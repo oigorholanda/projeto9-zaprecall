@@ -1,18 +1,18 @@
+import { useState } from 'react';
 import styled from 'styled-components';
-import logo from "./assets/img/logo.png"
+import Footer from './components/Footer';
+import Logo from './components/Logo';
+import Perguntas from './components/Perguntas';
 
 export default function App() {
+  const [concluidos, setconcluidos] = useState(0)
+
   return (
     <ScreenContainer>
-      <LogoContainer>
-        <img src={logo} alt="logo" />
-        <h1>ZapRecall</h1>
-      </LogoContainer>
-
-      <FooterConcluidos>
-      0/4 CONCLUÍDOS
-      </FooterConcluidos>
-    </ScreenContainer>
+        <Logo/>
+        <Perguntas concluidos={concluidos} setconcluidos={setconcluidos}/>
+        <Footer concluidos={concluidos}/>
+    </ScreenContainer>       
   );
 }
 
@@ -27,38 +27,4 @@ const ScreenContainer = styled.div`
   margin: 0px;
   padding: 0px;
   padding-bottom: 200px;
-`
-const LogoContainer = styled.div`
-  display: flex;
-  align-items: center;
-  margin: 40px 0 20px 0;
-  img {
-  width: 52px;
-  }
-  h1 {
-  font-family: 'Righteous', cursive;
-  font-style: normal;
-  font-weight: 400;
-  font-size: 36px;
-  line-height: 45px;
-  color: #FFFFFF;
-  margin-left: 20px;
-  }
-`
-
-const FooterConcluidos = styled.div`
-  width: 100%;
-  min-height: 60px;
-  background-color: #FFFFFF;
-  position: fixed;
-  bottom: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-family: 'Recursive', sans-serif;
-  font-weight: 400;
-  font-size: 18px;
-  color: #333333;
-  padding: 10px;
 `
