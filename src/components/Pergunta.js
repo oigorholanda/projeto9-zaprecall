@@ -15,7 +15,7 @@ export default function Pergunta({ pergunta, resposta, indice, concluidos, setco
 
     function abreCard() {
         if (respondida) {
-            alert('Pergunta já respondida, caso deseje reiniciar clique no Logo')
+            alert('Pergunta já respondida, caso deseje responder novamente clique no Logo e reinicie o Recall')
         } else {
             setclicado(clicado + 1)
         }
@@ -84,7 +84,7 @@ const PerguntaFechada = styled.div`
     font-size: 16px;
     line-height: 19px;
     color: ${props => props.cor};
-    text-decoration: ${props => props.respondida ? "line-through" : "normal"};
+    text-decoration: ${props => props.respondida ? "line-through" : "none"};
     }
     img:hover{cursor: pointer;}
 `
