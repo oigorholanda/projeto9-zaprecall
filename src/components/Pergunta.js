@@ -2,30 +2,49 @@ import { useState } from "react"
 import styled from "styled-components"
 import seta from "../assets/img/seta_play.png"
 import virar from "../assets/img/seta_virar.png"
+import certo from "../assets/img/icone_certo.png"
+import erro from "../assets/img/icone_erro.png"
+import quase from "../assets/img/icone_quase.png"
 
-export default function Pergunta({ pergunta, resposta, indice }) {
+export default function Pergunta({ pergunta, resposta, indice, concluidos, setconcluidos }) {
+
     const [clicado, setclicado] = useState(0)
+    const [respondida, setrespondida] = useState(false)
+    const [cor, setcor] = useState('#333333')
+    const [nome, setnome] = useState(seta)
+
+    function abreCard() {
+        if (respondida) {
+            alert('Pergunta já respondida, caso deseje reiniciar clique no Logo')
+        } else {
+            setclicado(clicado + 1)
+        }
+    }
+
+    function fechaCard(cor, nome) {
+        setclicado(0)
+        setconcluidos(concluidos + 1)
+        setcor(cor)
+        setrespondida(true)
+        setnome(nome)
+    }
 
 
     switch (clicado) {
         case 0:
             return (
-                <>
-                    <PerguntaFechada >
-                        <p>Pergunta {indice}</p>
-                        <img src={seta} alt="seta" />
-                    </PerguntaFechada>
-                </>
+                <PerguntaFechada respondida={respondida} cor={cor}>
+                    <p>Pergunta {indice}</p>
+                    <img src={nome} alt="seta" onClick={() => abreCard()} />
+                </PerguntaFechada>
             )
 
         case 1:
             return (
-                <>
-                    <PerguntaAberta>
-                        <p>{pergunta}</p>
-                        <img src={virar} alt="virar"  />
-                    </PerguntaAberta>
-                </>
+                <PerguntaAberta>
+                    <p>{pergunta}</p>
+                    <img src={virar} alt="virar" onClick={() => abreCard()} />
+                </PerguntaAberta>
             )
 
         case 2:
@@ -33,20 +52,18 @@ export default function Pergunta({ pergunta, resposta, indice }) {
                 <PerguntaAberta>
                     <p>{resposta}</p>
                     <Botoes>
-                        <button >Não lembrei</button>
-                        <button >Quase lembrei</button>
-                        <button >Zap!</button>
+                        <button onClick={() => fechaCard('#FF3030', erro)} >Não lembrei</button>
+                        <button onClick={() => fechaCard('#FF922E', quase)} >Quase lembrei</button>
+                        <button onClick={() => fechaCard('#2FBE34', certo)} >Zap!</button>
                     </Botoes>
                 </PerguntaAberta>
             )
 
         default:
             return (
-                <p>Algo deu errado</p>
+                <p>OOps! Algo deu errado =/</p>
             )
-
     }
-
 }
 
 const PerguntaFechada = styled.div`
@@ -66,8 +83,10 @@ const PerguntaFechada = styled.div`
     font-weight: 700;
     font-size: 16px;
     line-height: 19px;
-    color: #333333;
+    color: ${props => props.cor};
+    text-decoration: ${props => props.respondida ? "line-through" : "normal"};
     }
+    img:hover{cursor: pointer;}
 `
 
 const PerguntaAberta = styled.div`
@@ -92,14 +111,15 @@ const PerguntaAberta = styled.div`
   position: absolute;
   bottom: 15px;
   right: 20px;
-    }
+  &:hover{cursor: pointer;}
+  }
 `
 
 const Botoes = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 12px;
+    margin-top: 15px;
 
     button{
         width: 83px;
@@ -112,18 +132,9 @@ const Botoes = styled.div`
         font-size: 13px;
         line-height: 14px;
 
-        &:nth-child(1) {
-            background-color: #FF3030;
-        }
-        &:nth-child(2) {
-            background-color: #FF922E;
-        }
-        &:nth-child(3) {
-            background-color: #2FBE34;
-        }
-        &:hover{
-        cursor: pointer;
-        }
+        &:nth-child(1) { background-color: #FF3030; }
+        &:nth-child(2) { background-color: #FF922E; }
+        &:nth-child(3) { background-color: #2FBE34; }
+        &:hover{ cursor: pointer; }
     }
-
 `

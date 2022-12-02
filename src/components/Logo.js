@@ -1,9 +1,10 @@
-import logo from "../assets/img/logo.png"
 import styled from "styled-components"
+import logo from "../assets/img/logo.png"
 
 export default function Logo() {
+
     return (
-        <LogoContainer>
+        <LogoContainer onClick={() => window.confirm("Deseja iniciar novamente?") && window.location.reload(true)}>
             <img src={logo} alt="logo" />
             <h1>ZapRecall</h1>
         </LogoContainer>

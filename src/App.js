@@ -1,17 +1,13 @@
-import { useState } from 'react';
-import styled from 'styled-components';
-import Footer from './components/Footer';
-import Logo from './components/Logo';
-import Perguntas from './components/Perguntas';
+import styled from 'styled-components'
+import Logo from './components/Logo'
+import Body from './components/Body'
 
 export default function App() {
-  const [concluidos, setconcluidos] = useState(0)
-
+  
   return (
     <ScreenContainer>
         <Logo/>
-        <Perguntas concluidos={concluidos} setconcluidos={setconcluidos}/>
-        <Footer concluidos={concluidos}/>
+        <Body/>
     </ScreenContainer>       
   );
 }
