@@ -12,21 +12,25 @@ export default function Pergunta({ pergunta, resposta, indice, concluidos, setco
     const [respondida, setrespondida] = useState(false)
     const [cor, setcor] = useState('#333333')
     const [nome, setnome] = useState(seta)
+    const [data, setdata] = useState("play-btn")
 
     function abreCard() {
         if (respondida) {
-            alert('Pergunta já respondida, caso deseje responder novamente clique no Logo e reinicie o Recall')
+            alert(`Pergunta já respondida! 
+
+Caso deseje responder novamente clique no Logo para recomeçar o Recall.`)
         } else {
             setclicado(clicado + 1)
         }
     }
 
-    function fechaCard(cor, nome) {
+    function fechaCard(cor, nome, data) {
         setclicado(0)
         setconcluidos(concluidos + 1)
         setcor(cor)
         setrespondida(true)
         setnome(nome)
+        setdata(data)
     }
 
 
@@ -34,27 +38,27 @@ export default function Pergunta({ pergunta, resposta, indice, concluidos, setco
         case 0:
             return (
                 <PerguntaFechada respondida={respondida} cor={cor}>
-                    <p>Pergunta {indice}</p>
-                    <img src={nome} alt="seta" onClick={() => abreCard()} />
+                    <p data-test="flashcard-text">Pergunta {indice}</p>
+                    <img src={nome} alt="seta" data-test={data} onClick={() => abreCard()} />
                 </PerguntaFechada>
             )
 
         case 1:
             return (
                 <PerguntaAberta>
-                    <p>{pergunta}</p>
-                    <img src={virar} alt="virar" onClick={() => abreCard()} />
+                    <p data-test="flashcard-text">{pergunta}</p>
+                    <img src={virar} alt="virar" data-test="turn-btn" onClick={() => abreCard()} />
                 </PerguntaAberta>
             )
 
         case 2:
             return (
                 <PerguntaAberta>
-                    <p>{resposta}</p>
+                    <p data-test="flashcard-text">{resposta}</p>
                     <Botoes>
-                        <button onClick={() => fechaCard('#FF3030', erro)} >Não lembrei</button>
-                        <button onClick={() => fechaCard('#FF922E', quase)} >Quase lembrei</button>
-                        <button onClick={() => fechaCard('#2FBE34', certo)} >Zap!</button>
+                        <button data-test="no-btn" onClick={() => fechaCard('#FF3030', erro, 'no-icon')} >Não lembrei</button>
+                        <button data-test="partial-btn" onClick={() => fechaCard('#FF922E', quase, 'partial-icon')} >Quase lembrei</button>
+                        <button data-test="zap-btn" onClick={() => fechaCard('#2FBE34', certo, 'zap-icon')} >Zap!</button>
                     </Botoes>
                 </PerguntaAberta>
             )
@@ -63,6 +67,7 @@ export default function Pergunta({ pergunta, resposta, indice, concluidos, setco
             return (
                 <p>OOps! Algo deu errado =/</p>
             )
+            // break;
     }
 }
 
@@ -78,7 +83,7 @@ const PerguntaFechada = styled.div`
     align-items: center;
     justify-content: space-between;
     p {
-    font-family: 'Recursive';
+    font-family: 'Recursive', sans-serif;
     font-style: normal;
     font-weight: 700;
     font-size: 16px;

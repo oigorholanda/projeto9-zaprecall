@@ -7,7 +7,7 @@ export default function Footer({concluidos, total}) {
 
     return (
         <>
-            <FooterConcluidos>
+            <FooterConcluidos data-test="footer">
                 {concluidos}/{total} CONCLUÍDOS
             </FooterConcluidos>
         </>

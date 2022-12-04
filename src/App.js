@@ -11,9 +11,9 @@ export default function App() {
   if (inicio) {
     return (
       <LoginScreen>
-        <img src={logo} alt="" />
+        <img src={logo} alt="logo" />
         <h1>ZapRecall</h1>
-        <button onClick={() => setinicio(false)}>Iniciar Recall</button>
+        <button data-test="start-btn" onClick={() => setinicio(false)}>Iniciar Recall</button>
       </LoginScreen>
     )
   } else {
@@ -48,20 +48,20 @@ const LoginScreen = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 40px;
+  gap: 44px;
   padding-bottom: 200px;
   h1 {
   font-family: 'Righteous', cursive;
   font-style: normal;
   font-weight: 400;
-  font-size: 40px;
+  font-size: 44px;
   line-height: 45px;
   color: #FFFFFF;
   } 
   button {
-  font-family: 'Recursive';
+  font-family: 'Recursive', sans-serif;
   font-style: normal;
-  font-weight: 400;
+  font-weight: 500;
   font-size: 18px;
   line-height: 22px;  
   color: #D70900;

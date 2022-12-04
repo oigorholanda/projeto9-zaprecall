@@ -27,4 +27,5 @@ const LogoContainer = styled.div`
   color: #FFFFFF;
   margin-left: 20px;
   }
+  &:hover{ cursor:pointer; }
 `
