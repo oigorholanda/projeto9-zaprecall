@@ -37,7 +37,7 @@ Caso deseje responder novamente clique no Logo para recomeçar o Recall.`)
     switch (clicado) {
         case 0:
             return (
-                <PerguntaFechada respondida={respondida} cor={cor}>
+                <PerguntaFechada data-test="flashcard" respondida={respondida} cor={cor}>
                     <p data-test="flashcard-text">Pergunta {indice}</p>
                     <img src={nome} alt="seta" data-test={data} onClick={() => abreCard()} />
                 </PerguntaFechada>
@@ -45,7 +45,7 @@ Caso deseje responder novamente clique no Logo para recomeçar o Recall.`)
 
         case 1:
             return (
-                <PerguntaAberta>
+                <PerguntaAberta data-test="flashcard">
                     <p data-test="flashcard-text">{pergunta}</p>
                     <img src={virar} alt="virar" data-test="turn-btn" onClick={() => abreCard()} />
                 </PerguntaAberta>
@@ -53,7 +53,7 @@ Caso deseje responder novamente clique no Logo para recomeçar o Recall.`)
 
         case 2:
             return (
-                <PerguntaAberta>
+                <PerguntaAberta data-test="flashcard">
                     <p data-test="flashcard-text">{resposta}</p>
                     <Botoes>
                         <button data-test="no-btn" onClick={() => fechaCard('#FF3030', erro, 'no-icon')} >Não lembrei</button>

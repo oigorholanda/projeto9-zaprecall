@@ -1,16 +1,14 @@
 import styled from 'styled-components';
 
-export default function Footer({concluidos, total}) {
+export default function Footer({ concluidos, total }) {
     if (concluidos > total) {
         concluidos = total
     }
 
     return (
-        <>
-            <FooterConcluidos data-test="footer">
-                {concluidos}/{total} CONCLUÍDOS
-            </FooterConcluidos>
-        </>
+        <FooterConcluidos data-test="footer">
+            {concluidos}/{total} CONCLUÍDOS
+        </FooterConcluidos>
     )
 }
 
