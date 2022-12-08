@@ -20,7 +20,7 @@ export default function Perguntas() {
     return (
         <>
             {cards.map((p, index) =>
-                <Pergunta 
+                <Pergunta
                     pergunta={p.question}
                     resposta={p.answer}
                     indice={index + 1}
